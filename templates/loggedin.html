@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logged In</title>
+</head>
+<body>
+    <h1>Successfully Logged In!</h1>
+
+    <h2>User Details:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>NAME</th>
+                <th>NUMBER</th>
+                <th>EMAIL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.mobilenumber }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</br>
+<a href="userdetails">userdetails</a>
+</br>
+    <a href="/logout">Logout</a>
+</body>
+</html>

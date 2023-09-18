@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com-->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Login and Registration Form</title>
+    <!--<link rel="stylesheet" href="reg.css" /> -->
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <div class="container">
+        <input type="checkbox" id="flip" />
+        <div class="cover">
+            <div class="front">
+                <img src="\static\images\frontImg.jpg" alt="" />
+            </div>
+        </div>
+        <div class="forms">
+            <div class="form-content">
+                <div class="login-form">
+                    <div class="title">Login</div>
+                    <form method="post" action="" id="log">
+                        <div class="input-boxes">
+                            <div class="input-box">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" name="lemail" placeholder="Enter your email" required />
+                            </div>
+                            <div class="input-box">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" name="lpassword" placeholder="Enter your password" required />
+                            </div>
+                            <div class="text"><a href="#">Forgot password?</a></div>
+                            <div class="button input-box">
+                                <input type="submit" value="Submit" />
+                            </div>
+                            <div class="text sign-up-text">
+                                Don't have an account? <label for="flip">Signup now</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="signup-form">
+                    <div class="title">Signup</div>
+                    <form action="/register" method="post" autocomplete="off">
+                        <div class="input-boxes">
+                            <div class="input-box">
+                                <i class="fas fa-user"></i>
+                                <input type="text" name="username" placeholder="Enter your username" required />
+                            </div>
+                            <div class="input-box">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="number" name="mobilenumber" placeholder="Enter your mobile number" required />
+                            </div>
+                            <div id="error-msg" class="error-msg hide"></div>
+                            <div id="valid-msg" class="valid-msg hide"></div>
+                            <div class="input-box">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" name="email" placeholder="Enter your email" required />
+                            </div>
+                            <div class="input-box">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" name="password" placeholder="Enter your password" required />
+                            </div>
+                            <div class="input-box">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" name="conformpassword" placeholder="Confirm password" required />
+                            </div>
+                            <div class="button input-box">
+                                <input type="submit" value="Submit" />
+                            </div>
+                            <div class="text sign-up-text">
+                                Already have an account? <label for="flip">Login now</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script>
+        var input = document.querySelector("#number");
+        var iti = window.intlTelInput(input, {
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
+
+        function validateMobileNumber() {
+            var errorMsg = document.querySelector("#error-msg");
+            var validMsg = document.querySelector("#valid-msg");
+            var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+
+            function reset() {
+                input.classList.remove("error");
+                errorMsg.innerHTML = "";
+                errorMsg.classList.add("hide");
+                validMsg.classList.add("hide");
+            }
+
+            input.addEventListener("blur", function () {
+                reset();
+                if (input.value.trim()) {
+                    if (iti.isValidNumber()) {
+                        validMsg.classList.remove("hide");
+                    } else {
+                        input.classList.add("error");
+                        var errorCode = iti.getValidationError();
+                        errorMsg.innerHTML = errorMap[errorCode];
+                        errorMsg.classList.remove("hide");
+                    }
+                }
+            });
+
+            input.addEventListener("change", reset);
+            input.addEventListener("keyup", reset);
+        }
+
+        validateMobileNumber();
+    </script>
+</body>
+
+</html>
